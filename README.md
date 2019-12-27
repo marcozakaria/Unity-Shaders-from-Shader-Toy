@@ -1,4 +1,6 @@
-# Shaders-from-Shader-Toy
+# Shaders from Shader Toy
+
+Converted shaders from Shadertoy to Unity Shading Language
  
  Unity 2019.3.0f1
 
