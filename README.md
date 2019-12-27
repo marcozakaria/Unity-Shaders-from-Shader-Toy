@@ -7,6 +7,10 @@
 
  - Sber Wave :
  	https://www.shadertoy.com/view/Wt3GDS
+
  - Plasma Globemod :
  	https://www.shadertoy.com/view/MldczX
+
+ - Kaleido Tunnelmod :
+ 	https://www.shadertoy.com/view/MltcWl
 
