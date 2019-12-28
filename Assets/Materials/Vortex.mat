@@ -25,6 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ColorInts: 1.5
+    - _LineCount: 0.7
     - _LineScale: 0.35
     - _Size: 1.74
     - _Speed: 3
