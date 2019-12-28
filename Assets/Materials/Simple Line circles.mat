@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Simple Line circles
   m_Shader: {fileID: 4800000, guid: c25a90d289002124a818141f5e92dab9, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: COLORED MIRROR ROT_OFST TRIANGLE_NOISE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,5 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _COLORED: 1
+    - _LineCount: 25
+    - _MIRROR: 1
+    - _ROT_OFST: 1
+    - _SHOW_TRIANGLE_NOISE_ONLY: 0
     - _Speed: 2
+    - _TRIANGLE_NOISE: 1
+    - _UseTexture: 0
     m_Colors: []
