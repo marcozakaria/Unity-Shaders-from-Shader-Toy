@@ -52,6 +52,35 @@
                 return o;
             }
 
+            float MandleBulb(float3 pos) 
+            {
+                int Power = 2;
+
+                float3 z = pos;
+                float dr = 1.0;
+                float r = 0.0;
+                for (int i = 0; i < 15 ; i++) 
+                {
+                    r = length(z);
+                    if (r>2) break;
+                    
+                    // convert to polar coordinates
+                    float theta = acos(z.z/r) *Power;
+                    float phi = atan2(z.x,z.y) * Power;
+                    dr =  pow( r, Power-1.0)*Power*dr + 1.0;
+                    
+                    // scale and rotate the point
+                    float zr = pow( r,Power);
+                    theta = theta*Power;
+                    phi = phi*Power;
+                    
+                    // convert back to cartesian coordinates
+                    z = zr*float3(sin(theta)*cos(phi), sin(phi)*sin(theta), cos(theta));
+                    z+=pos;
+                }
+                return 0.5*log(r)*r/dr;
+            }
+
             float GetDist(float3 p)
             {
                 float d = length(p) - 0.5; // sphere
@@ -66,7 +95,7 @@
                 for(int i =0; i < Max_Steps; i++)
                 {
                     float3 p = rayOrigin + dO * rayDirection; // raymarching position
-                    ds = GetDist(p);
+                    ds = MandleBulb(p);//GetDist(p);
                     dO += ds;
                     if(ds < SURF_DIST || dO > Max_Dist) break; // if hit or passed maximum distance
                 }
