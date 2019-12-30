@@ -25,3 +25,6 @@ Converted shaders from ShaderToy to Unity Shading Language
  - Circle Lines :
  	https://www.shadertoy.com/view/Mts3zM
 
+ - Colored waves :
+ 	https://www.shadertoy.com/view/tl33Wj
+

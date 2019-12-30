@@ -54,7 +54,7 @@
 
             float MandleBulb(float3 pos) 
             {
-                int Power = 2;
+                int Power = 4;
 
                 float3 z = pos;
                 float dr = 1.0;
@@ -81,11 +81,46 @@
                 return 0.5*log(r)*r/dr;
             }
 
+            float GetDistSphere(float3 p, float radius)
+            {
+                float d = length(p) - radius; // sphere , radius  = 0.5
+                return d; 
+            }
+
+            float GetDistCapsule(float3 p, float3 a, float3 b, float radius) // not working
+            {
+                float3 ab = b-a;
+                float3 ap = p-a;
+
+                float t = dot(ab,ap) / dot(ap,ab);
+                t = clamp(t,0.0,1.0); 
+
+                float3 c = a + t*ab;
+                return (length(p-c) - radius);
+            }
+
+            float GetDistBox(float3 p)
+            {
+                return 0.0;
+            }
+
+            float GetDistTorus(float3 p,float r1, float r2)
+            {
+                float d = length( float2( length(p.xz) - r1 , p.y)) - r2; // torus
+                return d; 
+            }
+
             float GetDist(float3 p)
             {
-                float d = length(p) - 0.5; // sphere
-                d = length( float2( length(p.xz)-0.5 , p.y)) - 0.1; // torus
-                return d; 
+                float4 s = float4(0,1,0,1);
+
+                float sphereDist = GetDistSphere(p - s.xyz,s.w);
+                float planeDist = p.y;
+                float torusDist = GetDistTorus(p -s,0.8,0.2);
+                float capsuleDist = GetDistCapsule(p,float3(0,1,0),float3(0,2,0),0.3);
+
+                float d = min(capsuleDist,planeDist);
+                return d;
             }
 
             float RayMarch(float3 rayOrigin, float3 rayDirection)
@@ -95,7 +130,7 @@
                 for(int i =0; i < Max_Steps; i++)
                 {
                     float3 p = rayOrigin + dO * rayDirection; // raymarching position
-                    ds = MandleBulb(p);//GetDist(p);
+                    ds = GetDist(p); //MandleBulb(p);
                     dO += ds;
                     if(ds < SURF_DIST || dO > Max_Dist) break; // if hit or passed maximum distance
                 }
@@ -106,6 +141,7 @@
             float3 GetNormal(float3 p)
             {
                 float2 e = float2(1e-2, 0);
+                // get dist will be custo mized to each shape
                 float3 n = GetDist(p) - float3(
                     GetDist(p-e.xyy),
                     GetDist(p-e.yxy),
