@@ -2,7 +2,7 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -87,21 +87,37 @@
                 return d; 
             }
 
-            float GetDistCapsule(float3 p, float3 a, float3 b, float radius) // not working
+            float GetDistCapsule(float3 p, float3 a, float3 b, float radius) 
             {
                 float3 ab = b-a;
                 float3 ap = p-a;
 
-                float t = dot(ab,ap) / dot(ap,ab);
+                float t = dot(ab,ap) / dot(ab,ab);
                 t = clamp(t,0.0,1.0); 
 
                 float3 c = a + t*ab;
                 return (length(p-c) - radius);
             }
 
-            float GetDistBox(float3 p)
+            float GetDistCylinder(float3 p, float3 a, float3 b, float radius) 
             {
-                return 0.0;
+                float3 ab = b-a;
+                float3 ap = p-a;
+
+                float t = dot(ab,ap) / dot(ab,ab);
+                //t = clamp(t,0.0,1.0); // commneting this part making cylender tall is infinite
+
+                float3 c = a + t*ab;
+                float x = (length(p-c) - radius);
+                float y = (abs(t-0.5)-0.5) * length(ab);
+                float e = length(max(float2(x,y),0.0));
+                float i = min(max(x,y),0.0); // interior distance
+                return e+i;
+            }
+
+            float GetDistBox(float3 p, float3 s) // s for size
+            {
+                return length(max(0.0, abs(p)-s));
             }
 
             float GetDistTorus(float3 p,float r1, float r2)
@@ -112,14 +128,18 @@
 
             float GetDist(float3 p)
             {
-                float4 s = float4(0,1,0,1);
-
-                float sphereDist = GetDistSphere(p - s.xyz,s.w);
+                float sphereDist = GetDistSphere(p - float3(-2,1,0),0.5);
                 float planeDist = p.y;
-                float torusDist = GetDistTorus(p -s,0.8,0.2);
+                float boxDist = GetDistBox(p - float3(-2 , 0.5 ,2),float3(0.5,0.5,0.5));
+                float torusDist = GetDistTorus(p -float3(2,0.5,0),0.8,0.2);
                 float capsuleDist = GetDistCapsule(p,float3(0,1,0),float3(0,2,0),0.3);
+                float cylinderDist = GetDistCylinder(p,float3(0,0.3,2),float3(0,1.7,2),0.35);
 
-                float d = min(capsuleDist,planeDist);
+                float d = min(sphereDist,planeDist);
+                d = min(boxDist,d);
+                d = min(torusDist,d);
+                d = min(capsuleDist,d);
+                d = min(cylinderDist,d);
                 return d;
             }
 
@@ -136,7 +156,7 @@
                 }
 
                 return dO;
-            }
+            }           
 
             float3 GetNormal(float3 p)
             {
@@ -151,6 +171,20 @@
                 return normalize(n);
             }
 
+            float GetLight(float3 p) 
+            {
+                float3 lightPos = float3(0, 5, 6);
+                lightPos.xz += float2(sin(_Time.y), cos(_Time.y))*2.;
+                float3 l = normalize(lightPos-p);
+                float3 n = GetNormal(p);
+                
+                float dif = clamp(dot(n, l), 0., 1.);
+                float d = RayMarch(p+n*SURF_DIST*2., l);
+                if(d<length(lightPos-p)) dif *= .1;
+                
+                return dif;
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv - 0.5; // -0.5 to make uv start at center
@@ -163,7 +197,7 @@
                 if(d < Max_Dist) // hit the surface
                 {
                     float3 p = rayOrigin + rayDirection * d;
-                    float3 n = GetNormal(p);
+                    float3 n = GetLight(p);//GetNormal(p);
                     col.rgb = n;
                 }
                 else{ discard;} // discard dont render this pixel at all
