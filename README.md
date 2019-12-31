@@ -28,3 +28,6 @@ Converted shaders from ShaderToy to Unity Shading Language
  - Colored waves :
  	https://www.shadertoy.com/view/tl33Wj
 
+ -  FFT-IFS : 
+ 	https://www.shadertoy.com/view/4lyXWW
+
