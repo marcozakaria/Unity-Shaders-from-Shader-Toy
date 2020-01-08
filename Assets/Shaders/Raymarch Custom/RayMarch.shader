@@ -3,6 +3,9 @@
     Properties
     {
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
+        _MaxSteps("Max Steps",int) = 100
+        _MaxDist("Max Distance",int) = 100
+        _SURF_DIST("Min Surf Distance",float) = 0.001
     }
     SubShader
     {
@@ -17,9 +20,9 @@
   
             #include "UnityCG.cginc"
 
-            #define Max_Steps 100
-            #define Max_Dist 100
-            #define SURF_DIST 1e-3 // 0.001
+            //#define Max_Steps 100
+            //#define Max_Dist 100
+           // #define SURF_DIST 1e-3 // 0.001
 
             struct appdata
             {
@@ -38,6 +41,10 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            int _MaxSteps;
+            int _MaxDist;
+            float _SURF_DIST;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -50,6 +57,14 @@
                //o.ro = _WorldSpaceCameraPos;
                 //o.hitPos = mul(unity_ObjectToWorld,v.vertex);
                 return o;
+            }
+
+            // multiple it with 2 axis we want to rotate on
+            float2x2 Rotate(float angle)
+            {
+                float s = sin(angle);
+                float c = cos(angle);
+                return float2x2(c, -s, s, c);
             }
 
             float MandleBulb(float3 pos) 
@@ -99,6 +114,12 @@
                 return (length(p-c) - radius);
             }
 
+            float GeDisttPrism(float3 p, float3 centre, float2 h) // triangle
+            {
+                float3 q = abs(p - centre);
+                return max(q.z - h.y, max(q.x * 0.866025 + p.y * 0.5, -p.y) - h.x * 0.5);
+            }
+
             float GetDistCylinder(float3 p, float3 a, float3 b, float radius) 
             {
                 float3 ab = b-a;
@@ -126,20 +147,51 @@
                 return d; 
             }
 
+            // when object go inside object and we cut the part of B from A
+            float BooleanSubstractionDist(float distA, float distB)
+            {
+                return max(-distA, distB);
+            }
+
+            float BooleanIntersectionDist(float distA, float distB)
+            {
+                return max(distA, distB);
+            }
+
+            float BooleanUnionDist(float distA, float distB)
+            {
+                return min(-distA, distB);
+            }
+
+            float SmoothMinimum(float distA, float distB, float k)
+            {
+                float h = clamp(0.5 + 0.5*(distB-distA)/k, 0.0 , 1.0);
+                return (lerp(distB, distA, h) - k*h*(1.0-h));
+            }
+
             float GetDist(float3 p)
             {
-                float sphereDist = GetDistSphere(p - float3(-2,1,0),0.5);
+                float sphereDist = GetDistSphere(p - float3(-2,1,0),1.0);
                 float planeDist = p.y;
-                float boxDist = GetDistBox(p - float3(-2 , 0.5 ,2),float3(0.5,0.5,0.5));
-                float torusDist = GetDistTorus(p -float3(2,0.5,0),0.8,0.2);
+
+                float3 boxPos = p - float3(-2 , 1 ,0);
+                boxPos.xz = mul(boxPos.xz, Rotate(_Time.y)); // rotation on XZ is rotatiing on Y axis
+                float boxDist = GetDistBox(boxPos,float3(0.5,0.5,0.5));
+
+                float torusDist = GetDistTorus(p -float3(2,0.5,-1),0.8,0.2);
                 float capsuleDist = GetDistCapsule(p,float3(0,1,0),float3(0,2,0),0.3);
                 float cylinderDist = GetDistCylinder(p,float3(0,0.3,2),float3(0,1.7,2),0.35);
+                float prismDist = GeDisttPrism(p, float3(1, 0.5, -1.5), float2(1.5, 0.5));
 
-                float d = min(sphereDist,planeDist);
-                d = min(boxDist,d);
-                d = min(torusDist,d);
-                d = min(capsuleDist,d);
-                d = min(cylinderDist,d);
+                float d;
+                d = lerp(sphereDist, boxDist, sin(_Time.y)*0.5+0.6); // moorf distance
+                d = min(capsuleDist, d);
+                //d = min(boxDist, d);               
+                d = min(planeDist, d);
+                d = min(cylinderDist, d);
+                d = min(torusDist, d);
+                d = SmoothMinimum(prismDist, d, 0.8);
+                
                 return d;
             }
 
@@ -147,12 +199,12 @@
             {
                 float dO = 0; // distance from origin
                 float ds; // distance from scene
-                for(int i =0; i < Max_Steps; i++)
+                for(int i =0; i < _MaxSteps; i++)
                 {
                     float3 p = rayOrigin + dO * rayDirection; // raymarching position
                     ds = GetDist(p); //MandleBulb(p);
                     dO += ds;
-                    if(ds < SURF_DIST || dO > Max_Dist) break; // if hit or passed maximum distance
+                    if(ds < _SURF_DIST || dO > _MaxDist) break; // if hit or passed maximum distance
                 }
 
                 return dO;
@@ -179,7 +231,7 @@
                 float3 n = GetNormal(p);
                 
                 float dif = clamp(dot(n, l), 0., 1.);
-                float d = RayMarch(p+n*SURF_DIST*2., l);
+                float d = RayMarch(p+n *_SURF_DIST *2., l);
                 if(d<length(lightPos-p)) dif *= .1;
                 
                 return dif;
@@ -194,7 +246,7 @@
                 float d = RayMarch(rayOrigin,rayDirection);
                 fixed4 col = 0;
 
-                if(d < Max_Dist) // hit the surface
+                if(d < _MaxDist) // hit the surface
                 {
                     float3 p = rayOrigin + rayDirection * d;
                     float3 n = GetLight(p);//GetNormal(p);
