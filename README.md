@@ -33,3 +33,15 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Grail :
 	https://www.shadertoy.com/view/Wl3GWX
+
+- Circular Calender :
+	https://www.shadertoy.com/view/3tKGRD
+
+- Accidental Fractal :
+	https://www.shadertoy.com/view/WtVGzz
+
+- The ring color mixer :
+	https://www.shadertoy.com/view/WtG3RD
+
+- Toothpick cover :
+	https://www.shadertoy.com/view/wtKGzD
