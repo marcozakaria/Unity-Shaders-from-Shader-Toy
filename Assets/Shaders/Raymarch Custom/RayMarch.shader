@@ -3,6 +3,7 @@
     Properties
     {
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
+
         _MaxSteps("Max Steps",int) = 100
         _MaxDist("Max Distance",int) = 100
         _SURF_DIST("Min Surf Distance",float) = 0.001
@@ -163,16 +164,22 @@
                 return min(-distA, distB);
             }
 
+            // blend two objects to gether with softness value k 
             float SmoothMinimum(float distA, float distB, float k)
             {
                 float h = clamp(0.5 + 0.5*(distB-distA)/k, 0.0 , 1.0);
                 return (lerp(distB, distA, h) - k*h*(1.0-h));
             }
 
-            float GetDist(float3 p)
+            float GetDistPlane(float3 p , float3 rot)
+            {
+                return dot(p, normalize(rot));
+            }
+
+            float GetDist(float3 p)  // Signed Distance functions
             {
                 float sphereDist = GetDistSphere(p - float3(-2,1,0),1.0);
-                float planeDist = p.y;
+                float planeDist = GetDistPlane(p, float3(0,1,0));
 
                 float3 boxPos = p - float3(-2 , 1 ,0);
                 boxPos.xz = mul(boxPos.xz, Rotate(_Time.y)); // rotation on XZ is rotatiing on Y axis

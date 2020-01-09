@@ -1531,7 +1531,7 @@ GameObject:
   - component: {fileID: 1772545660}
   - component: {fileID: 1772545659}
   m_Layer: 0
-  m_Name: Circulr Calender PLane (1)
+  m_Name: The ring coloered plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

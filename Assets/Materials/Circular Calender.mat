@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tooth Pick cover
-  m_Shader: {fileID: 4800000, guid: 094e3792d2317bc4cb08d9024b65134f, type: 3}
+  m_Name: Circular Calender
+  m_Shader: {fileID: 4800000, guid: cd1d8e8f5247d7c43bb31f8290a3e91a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,7 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Iteration: 64
-    - _Size: 4
-    - _Speed: 4
+    - _BlurAmount: 0.01
+    - _RadiusSize: 0.85
+    - _Speed1: 0.3
+    - _Speed2: 0.2
+    - _Speed3: 0.2
+    - _Speed4: 0.15
+    - _Speed5: 0.5
     m_Colors: []

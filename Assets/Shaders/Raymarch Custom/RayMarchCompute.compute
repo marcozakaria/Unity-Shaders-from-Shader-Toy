@@ -1,0 +1,169 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+
+// multiple it with 2 axis we want to rotate on
+float2x2 Rotate(float angle)
+{
+    float s = sin(angle);
+    float c = cos(angle);
+    return float2x2(c, -s, s, c);
+}
+
+float GetDistPlane(float3 p, float3 rot)
+{
+    return dot(p, normalize(rot));
+}
+
+float GetDistSphere(float3 p, float radius)
+{
+    float d = length(p) - radius; // sphere , radius  = 0.5
+    return d;
+}
+
+float GetDistCapsule(float3 p, float3 a, float3 b, float radius)
+{
+    float3 ab = b - a;
+    float3 ap = p - a;
+
+    float t = dot(ab, ap) / dot(ab, ab);
+    t = clamp(t, 0.0, 1.0);
+
+    float3 c = a + t * ab;
+    return (length(p - c) - radius);
+}
+
+float GeDisttPrism(float3 p, float3 centre, float2 h) // triangle
+{
+    float3 q = abs(p - centre);
+    return max(q.z - h.y, max(q.x * 0.866025 + p.y * 0.5, -p.y) - h.x * 0.5);
+}
+
+float GetDistCylinder(float3 p, float3 a, float3 b, float radius)
+{
+    float3 ab = b - a;
+    float3 ap = p - a;
+
+    float t = dot(ab, ap) / dot(ab, ab);
+    //t = clamp(t,0.0,1.0); // commneting this part making cylender tall is infinite
+
+    float3 c = a + t * ab;
+    float x = (length(p - c) - radius);
+    float y = (abs(t - 0.5) - 0.5) * length(ab);
+    float e = length(max(float2(x, y), 0.0));
+    float i = min(max(x, y), 0.0); // interior distance
+    return e + i;
+}
+
+float GetDistBox(float3 p, float3 s) // s for size
+{
+    return length(max(0.0, abs(p) - s));
+}
+
+float GetDistTorus(float3 p, float r1, float r2)
+{
+    float d = length(float2(length(p.xz) - r1, p.y)) - r2; // torus
+    return d;
+}
+
+// when object go inside object and we cut the part of B from A
+float BooleanSubstractionDist(float distA, float distB)
+{
+    return max(-distA, distB);
+}
+
+float BooleanIntersectionDist(float distA, float distB)
+{
+    return max(distA, distB);
+}
+
+float BooleanUnionDist(float distA, float distB)
+{
+    return min(-distA, distB);
+}
+
+// blend two objects to gether with softness value k 
+float SmoothMinimum(float distA, float distB, float k)
+{
+    float h = clamp(0.5 + 0.5 * (distB - distA) / k, 0.0, 1.0);
+    return (lerp(distB, distA, h) - k * h * (1.0 - h));
+}
+
+float GetDist(float3 p)  // Signed Distance functions
+{
+    float sphereDist = GetDistSphere(p - float3(-2, 1, 0), 1.0);
+    float planeDist = GetDistPlane(p, float3(0, 1, 0));
+
+    float3 boxPos = p - float3(-2, 1, 0);
+    boxPos.xz = mul(boxPos.xz, Rotate(_Time.y)); // rotation on XZ is rotatiing on Y axis
+    float boxDist = GetDistBox(boxPos, float3(0.5, 0.5, 0.5));
+
+    float torusDist = GetDistTorus(p - float3(2, 0.5, -1), 0.8, 0.2);
+    float capsuleDist = GetDistCapsule(p, float3(0, 1, 0), float3(0, 2, 0), 0.3);
+    float cylinderDist = GetDistCylinder(p, float3(0, 0.3, 2), float3(0, 1.7, 2), 0.35);
+    float prismDist = GeDisttPrism(p, float3(1, 0.5, -1.5), float2(1.5, 0.5));
+
+    float d;
+    d = lerp(sphereDist, boxDist, sin(_Time.y) * 0.5 + 0.6); // moorf distance
+    d = min(capsuleDist, d);
+    //d = min(boxDist, d);               
+    d = min(planeDist, d);
+    d = min(cylinderDist, d);
+    d = min(torusDist, d);
+    d = SmoothMinimum(prismDist, d, 0.8);
+
+    return d;
+}
+
+float RayMarch(float3 rayOrigin, float3 rayDirection)
+{
+    float dO = 0; // distance from origin
+    float ds; // distance from scene
+    for (int i = 0; i < _MaxSteps; i++)
+    {
+        float3 p = rayOrigin + dO * rayDirection; // raymarching position
+        ds = GetDist(p); //MandleBulb(p);
+        dO += ds;
+        if (ds < _SURF_DIST || dO > _MaxDist) break; // if hit or passed maximum distance
+    }
+
+    return dO;
+}
+
+float3 GetNormal(float3 p)
+{
+    float2 e = float2(1e-2, 0);
+    // get dist will be custo mized to each shape
+    float3 n = GetDist(p) - float3(
+        GetDist(p - e.xyy),
+        GetDist(p - e.yxy),
+        GetDist(p - e.yyx)
+        );
+
+    return normalize(n);
+}
+
+float GetLight(float3 p)
+{
+    float3 lightPos = float3(0, 5, 6);
+    lightPos.xz += float2(sin(_Time.y), cos(_Time.y)) * 2.;
+    float3 l = normalize(lightPos - p);
+    float3 n = GetNormal(p);
+
+    float dif = clamp(dot(n, l), 0., 1.);
+    float d = RayMarch(p + n * _SURF_DIST * 2., l);
+    if (d < length(lightPos - p)) dif *= .1;
+
+    return dif;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+}
