@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tooth Pick cover
-  m_Shader: {fileID: 4800000, guid: 094e3792d2317bc4cb08d9024b65134f, type: 3}
+  m_Name: DanceFloorShader
+  m_Shader: {fileID: 4800000, guid: e7b6867ed7d6ee14ca99f875df42e6c1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,9 +18,12 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Iteration: 64
-    - _Size: 4
+    - _Size: 10
     - _Speed: 4
     m_Colors: []
