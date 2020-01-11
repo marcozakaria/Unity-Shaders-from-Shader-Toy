@@ -8,6 +8,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/[Rr]ecording/
 /[Mm]emoryCaptures/
 
 # Never ignore Asset meta data
@@ -58,3 +59,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Recordings/movie.mp4
