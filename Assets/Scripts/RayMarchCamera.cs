@@ -4,14 +4,15 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
-public class RayMarchCamera : MonoBehaviour
+public class RayMarchCamera : SceneViewFilter
 {
     [SerializeField] Shader rayMarchIE;
     [SerializeField] Material rayMarchMat;
     [SerializeField] Camera mainCamera;
 
     [Header("RayMArching Setings")]
-    [SerializeField] float maxDistance;
+    [SerializeField] float maxDistance = 10;
+    [SerializeField] Transform lightDirection;
 
     private void Start()
     {
@@ -32,8 +33,10 @@ public class RayMarchCamera : MonoBehaviour
         rayMarchMat.SetMatrix("_CamFrustum", CamFrustum(mainCamera));
         rayMarchMat.SetMatrix("_CamToWorld", mainCamera.cameraToWorldMatrix);
         rayMarchMat.SetFloat("_maxDistance", maxDistance);
+        rayMarchMat.SetVector("_LightDir", lightDirection.forward);
 
         RenderTexture.active = destination;
+        rayMarchMat.SetTexture("_MainTex", source);
         GL.PushMatrix();
         GL.LoadOrtho();
         rayMarchMat.SetPass(0);

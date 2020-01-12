@@ -21,6 +21,6 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Iteration: 64
-    - _Size: 4
+    - _Size: 2
     - _Speed: 4
     m_Colors: []

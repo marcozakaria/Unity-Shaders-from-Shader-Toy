@@ -204,7 +204,7 @@
 
             float RayMarch(float3 rayOrigin, float3 rayDirection)
             {
-                float dO = 0; // distance from origin
+                float dO = 0; // distance from origin, distance travelled
                 float ds; // distance from scene
                 for(int i =0; i < _MaxSteps; i++)
                 {
