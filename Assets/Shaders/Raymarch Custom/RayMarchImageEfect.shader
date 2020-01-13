@@ -17,6 +17,7 @@
             #pragma target 3.0
 
             #include "UnityCG.cginc"
+            #include "SignedDistanceFiledFunctions.cginc"
 
             sampler2D _MainTex;
             // uniform like public
@@ -24,6 +25,8 @@
             uniform float4x4 _CamFrustum, _CamToWorld;
             uniform float _maxDistance;
             uniform float3 _LightDir;
+            uniform fixed4 _MainColor;
+            uniform float3 _modInterval;
 
             struct appdata
             {
@@ -52,22 +55,16 @@
 
                 return o;
             }
-
-            float GetDistBox(float3 p, float3 s) // s for size
-            {
-                return length(max(0.0, abs(p)-s));
-            }
-
-            float SDSphere(float3 p , float r)
-            {
-                return length(p) - r;
-            }
+           
 
             float GetDistanceField(float3 p)
             {
-                float sphere1 = SDSphere(p - float3(0,0,0), 1.0);
-                float box1 = GetDistBox(p - float3(2,1,0),float3(1,1,1));
-                return sphere1;
+                float modx = PMod1(p.x, _modInterval.x);
+                float mody = PMod1(p.y, _modInterval.y);
+                float modz = PMod1(p.z, _modInterval.z);
+                float sphere1 = GetDistSphere(p - float3(0,0,0), 1.0);
+                float box1 = GetDistBox(p - float3(0,0,0),float3(1,1,1));
+                return BooleanSubstractionDist(sphere1,box1);
             }
 
             float3 GetNormal(float3 p)
@@ -105,7 +102,7 @@
                         //Shading
                         float3 n = GetNormal(p);
                         float light = dot(-_LightDir,n);
-                        result = fixed4(fixed3(1,1,1)* light,1) ;
+                        result = fixed4(_MainColor.rgb* light,1) ;
                         break;
                     }
                     

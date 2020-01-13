@@ -13,6 +13,8 @@ public class RayMarchCamera : SceneViewFilter
     [Header("RayMArching Setings")]
     [SerializeField] float maxDistance = 10;
     [SerializeField] Transform lightDirection;
+    [SerializeField] Color mainColor= Color.white;
+    [SerializeField] Vector3 modInterval;
 
     private void Start()
     {
@@ -34,6 +36,8 @@ public class RayMarchCamera : SceneViewFilter
         rayMarchMat.SetMatrix("_CamToWorld", mainCamera.cameraToWorldMatrix);
         rayMarchMat.SetFloat("_maxDistance", maxDistance);
         rayMarchMat.SetVector("_LightDir", lightDirection.forward);
+        rayMarchMat.SetColor("_MainColor", mainColor);
+        rayMarchMat.SetVector("_modInterval", modInterval);
 
         RenderTexture.active = destination;
         rayMarchMat.SetTexture("_MainTex", source);

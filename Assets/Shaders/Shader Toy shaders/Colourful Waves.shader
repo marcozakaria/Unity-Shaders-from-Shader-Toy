@@ -88,7 +88,7 @@ Shader "Custom/Colourful Waves"
 				fixed4 fragColor = 0;
 				fixed2 uv = i.uv;
 
-				fixed2 waveUv = (2. * i.uv - 1) / 1 * (_WavesNumber - 1.);
+				fixed2 waveUv = (2.0 * i.uv - 1) / 1 * (_WavesNumber - 1.);
 
 				fixed aa = _WavesNumber * 2. / _ScreenParams.y;
 
