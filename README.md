@@ -2,8 +2,8 @@
 
 Converted shaders from ShaderToy to Unity Shading Language
 
-![Preview1](Assets/Preview/Preview1.PNG)
-![Preview2](Assets/Preview/gif1.gif)
+![PreviewPNG](Assets/Preview/Preview1.PNG)
+![PreviewGIF](Assets/Preview/gif1.gif)
  
  Unity 2019.3.0f1
 
@@ -54,3 +54,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - James bond rabbit hole :
 	https://www.shadertoy.com/view/tlG3WR
+
+- Colourful Waves :
+	https://www.shadertoy.com/view/ttVGDh
