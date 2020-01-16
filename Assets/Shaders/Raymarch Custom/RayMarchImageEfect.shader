@@ -63,7 +63,7 @@
                 float mody = PMod1(p.y, _modInterval.y);
                 float modz = PMod1(p.z, _modInterval.z);
                 float sphere1 = GetDistSphere(p - float3(0,0,0), 1.0);
-                float box1 = GetDistBox(p - float3(0,0,0),float3(1,1,1));
+                float box1 = GetDistOctahedron(p - float3(0,0,0),2.0);
                 return BooleanSubstractionDist(sphere1,box1);
             }
 

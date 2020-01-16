@@ -104,6 +104,12 @@ float GetDistPlane(float3 p , float3 rot)
 	return dot(p, normalize(rot));
 }
 
+float GetDistOctahedron(float3 p, float s)
+{
+	p = abs(p);
+	return (p.x+p.y+p.z-s)*0.57735027;
+}
+
 // BOOLEAN OPERATORS //
 
 // when object go inside object and we cut the part of B from A ,Subtraction
