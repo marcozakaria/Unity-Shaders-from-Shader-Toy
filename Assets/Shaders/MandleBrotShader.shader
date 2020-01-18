@@ -1,4 +1,5 @@
-﻿Shader "Custom/MandleBrotShader"
+﻿// From Art of code series
+Shader "Custom/MandleBrotShader"
 {
     Properties
     {

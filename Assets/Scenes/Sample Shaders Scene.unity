@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 106462539}
   - component: {fileID: 106462538}
   - component: {fileID: 106462537}
+  - component: {fileID: 106462541}
   m_Layer: 0
   m_Name: Mandlebrot Plane
   m_TagString: Untagged
@@ -309,6 +310,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106462541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106462536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795025ccd3d2a4d4f889032dff8ad484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mandleMAt: {fileID: 2100000, guid: 08770748e0d3495458e96041c45264cc, type: 2}
+  moveSpeed: 0.05
+  mandlePos: {x: 0, y: 0, z: 4, w: 4}
 --- !u!1 &153503394
 GameObject:
   m_ObjectHideFlags: 0

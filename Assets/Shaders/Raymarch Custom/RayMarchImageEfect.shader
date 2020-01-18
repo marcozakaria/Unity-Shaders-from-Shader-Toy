@@ -55,16 +55,24 @@
 
                 return o;
             }
-           
+            
+            float BoxSphere(float3 p)
+            {
+                float sphere1 = GetDistSphere(p - float3(0,0,0), 1.0);
+                float box1 = GetDistRoundBox(p - float3(0,0,0),float3(0,0,0),2.0);
+                float combinedone = SmoothMinimum(sphere1,box1,0.2);
+                return combinedone;
+            }
 
             float GetDistanceField(float3 p)
             {
-                float modx = PMod1(p.x, _modInterval.x);
-                float mody = PMod1(p.y, _modInterval.y);
-                float modz = PMod1(p.z, _modInterval.z);
-                float sphere1 = GetDistSphere(p - float3(0,0,0), 1.0);
-                float box1 = GetDistOctahedron(p - float3(0,0,0),2.0);
-                return BooleanSubstractionDist(sphere1,box1);
+               // float modx = PMod1(p.x, _modInterval.x);
+              //  float mody = PMod1(p.y, _modInterval.y);
+                //float modz = PMod1(p.z, _modInterval.z);
+                float ground = GetDistPlane(p , float3(0,0,0));
+                float boxSphere = BoxSphere(p);
+                
+                return BooleanSubstractionDist(ground,boxSphere);
             }
 
             float3 GetNormal(float3 p)
