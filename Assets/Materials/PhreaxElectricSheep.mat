@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_SimplePrespectiveGrid
-  m_Shader: {fileID: 4800000, guid: 4c59a364a0d4e754faf3ed15d43c97d4, type: 3}
+  m_Name: PhreaxElectricSheep
+  m_Shader: {fileID: 4800000, guid: dae27ee003c204845bca772e4ef05320, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,12 +18,7 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Floats:
-    - _Thickness: 0.143
-    - _depth: 0.559
+    - _Count: 20
     m_Colors: []
