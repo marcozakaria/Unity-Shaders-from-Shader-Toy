@@ -105,7 +105,7 @@ Shader "Custom/Magma Rocks"
 			{
 				fixed3 fragColor = fixed3(0.0,0.0,0.0);
 				fixed2 uv = i.uv ;
-				uv.x *= _ScaleX/_ScaleY;
+				uv *= fixed2(_ScaleX,_ScaleY);
 				uv.x += _Time.y * .01;
 				//return fixed3(0.,0.,0.,0.);
 				fragColor.rgb += magmaFunc(fixed3(1.5, .45, 0.), uv, 3.,  2.5, 1.15, 1.5, false, 1.5);

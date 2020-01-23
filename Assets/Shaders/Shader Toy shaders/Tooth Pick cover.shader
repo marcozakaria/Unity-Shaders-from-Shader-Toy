@@ -104,7 +104,7 @@ Shader "Custom/Tooth Pick cover"
 				col = float3(linee,linee,linee);
 				col.rg *= 0.2 + sin(cv * 24.)/4. + cos(uv*12.)/4.;
 
-				return fixed4(col,linee);
+				return fixed4(col,linee); // transparent put alpha linee
 			}
 			ENDCG
 		}

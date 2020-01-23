@@ -22,5 +22,5 @@ Material:
     m_Floats:
     - _Iteration: 64
     - _Size: 2
-    - _Speed: 4
+    - _Speed: 6
     m_Colors: []

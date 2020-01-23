@@ -53,7 +53,7 @@ Shader "Custom/Accidental Fractal"
             {
                 float r = sqrt(x * x + y * y);
                 float a = atan2(x,y);//atan(y, x);
-                return sin(a+1.0*r*r) + r * (1.0 - cos(_Time.y * _Speed)) * 0.01;               
+                return sin(a+1.0*r*r) + r * (1.0 - cos(_Time.y * _Speed)) * 0.001;               
             }
 
             fixed4 frag (v2f i) : SV_Target

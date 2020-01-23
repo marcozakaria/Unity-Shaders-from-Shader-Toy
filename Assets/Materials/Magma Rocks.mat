@@ -19,5 +19,9 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
-    m_Floats: []
+    m_Floats:
+    - _ScaleX: 1.5
+    - _ScaleY: 1.5
+    - _Speed: 1
+    - _SpeedB: 1
     m_Colors: []
