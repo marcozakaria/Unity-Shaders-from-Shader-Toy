@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PhreaxElectricSheep
-  m_Shader: {fileID: 4800000, guid: dae27ee003c204845bca772e4ef05320, type: 3}
+  m_Name: Magma Rocks
+  m_Shader: {fileID: 4800000, guid: a836f2da58abbaf459bea393f87ed09e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,5 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
-    m_Floats:
-    - _Count: 10
+    m_Floats: []
     m_Colors: []

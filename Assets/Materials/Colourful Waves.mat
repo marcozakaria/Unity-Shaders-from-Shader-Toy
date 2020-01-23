@@ -25,6 +25,7 @@ Material:
     - _ColorModifierX: 0.12
     - _ColorModifierY: 1
     - _Speed: 0.336
+    - _WaveSpeed: 0.3
     - _WavesNumber: 12
     m_Colors:
     - _ColorPaletteA: {r: 0.5, g: 0.5, b: 0.5, a: 1}

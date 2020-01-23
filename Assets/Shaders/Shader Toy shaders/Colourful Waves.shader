@@ -5,6 +5,7 @@ Shader "Custom/Colourful Waves"
 	Properties
 	{
 		_Speed("Color Speed" ,Range(0.0,1.0)) = 0.02
+		_WaveSpeed("Wave Speed" ,Range(-1.0,1.0)) = 0.1
 		_WavesNumber("Waves number" ,Range(0.1,20.0)) = 8.0
 
 		_ColorModifierX("Color modifier X",Range(0.0,2.0)) = 0.12
@@ -44,6 +45,7 @@ Shader "Custom/Colourful Waves"
 			};
 
 			fixed _Speed;
+			fixed _WaveSpeed;
 			int _WavesNumber;
 
 			fixed _ColorModifierX;
@@ -58,8 +60,8 @@ Shader "Custom/Colourful Waves"
 
 			fixed wavePosition(fixed2 uv, fixed i) 
 			{
-				return sin((uv.x + i * 8.456) * (sin(_Time.y * 0.1 + 7.539 + i * 0.139) + 2.) * 0.5) * 0.65
-					+ sin(uv.x * (sin(_Time.y * 0.1 + i * 0.2) + 2.) * 0.3) * 0.3
+				return sin((uv.x + i * 8.456) * (sin(_Time.y * _WaveSpeed + 7.539 + i * 0.139) + 2.) * 0.5) * 0.65
+					+ sin(uv.x * (sin(_Time.y * _WaveSpeed + i * 0.2) + 2.) * 0.3) * 0.3
 					- (i - _WavesNumber / 2.) * 2. - uv.y;
 			}
 

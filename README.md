@@ -63,3 +63,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Phreax Electric Sheep :
 	https://www.shadertoy.com/view/wlV3zy
+
+- Magma Rocks :
+	https://www.shadertoy.com/view/4lXfR7
