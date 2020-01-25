@@ -69,3 +69,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Circle Pattern :
 	https://www.shadertoy.com/view/lss3Df
+
+- Fluid Like :
+	https://www.shadertoy.com/view/wty3DG
