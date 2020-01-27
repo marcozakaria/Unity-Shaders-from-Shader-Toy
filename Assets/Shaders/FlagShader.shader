@@ -57,15 +57,14 @@ Shader "Unlit/FlagShader"
                 fixed2 uv = 2*i.uv -1;
                 fixed2 st = i.uv /1;
 
-                float w = sin((uv.x + uv.y - _Time.y * .75 + sin(1.5 * uv.x + 4.5 * uv.y) * PI * .3)
-                            * PI * .6); // fake waviness factor
+                float w = sin((uv.x + uv.y - _Time.y * .75 + sin(1.5 * uv.x + 4.5 * uv.y) * PI * .3) * PI * .6); // fake waviness factor
                 
                 uv *= 1. + (.036 - .036 * w);
                 fixed3 col = colTex.rgb;
                 
                 // flag colors
-                col = lerp(col, _ColorA, smoothstep(.35, .36, uv.y));
-                col = lerp(col, _ColorB, smoothstep(-.35, -.36, uv.y));
+                col = lerp(col, _ColorA, smoothstep(.35, .37, uv.y)); // increase second number to increase blur level
+                col = lerp(col, _ColorB, smoothstep(-.35, -.37, uv.y));
                 
                 col += w * .225; // for waving effect
                 

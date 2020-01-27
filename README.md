@@ -72,3 +72,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Fluid Like :
 	https://www.shadertoy.com/view/wty3DG
+
+- Foamy Water :
+	https://www.shadertoy.com/view/llcXW7
+
+- Poly Grid :
+	https://www.shadertoy.com/view/ttK3W3
