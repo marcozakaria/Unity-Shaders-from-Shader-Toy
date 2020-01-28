@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PolyGrid
-  m_Shader: {fileID: 4800000, guid: 292b1b06eb6c0c04b8de0c89a4b5ce77, type: 3}
+  m_Name: StarFiledShader
+  m_Shader: {fileID: 4800000, guid: b8d46ad09c6154141a19b09e8ce523bd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,8 +24,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amount: 0.233
-    - _LineMove: 0
+    - _Scale: 6
     m_Colors:
-    - _ColorX: {r: 1, g: 0.978132, b: 0.39999998, a: 1}
-    - _ColorY: {r: 0.2, g: 0.69803923, b: 0.6875891, a: 1}
+    - _FadeVal: {r: 1.2, g: 0.8, b: 0, a: 0}
