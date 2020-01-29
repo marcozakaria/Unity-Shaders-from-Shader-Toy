@@ -26,5 +26,5 @@ Material:
     m_Floats:
     - _ScaleX: 2
     - _ScaleY: 2
-    - _Speed: 0.5
+    - _Speed: 1.54
     m_Colors: []
