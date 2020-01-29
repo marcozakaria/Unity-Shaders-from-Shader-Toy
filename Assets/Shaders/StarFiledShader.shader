@@ -5,9 +5,10 @@ Shader "Unlit/StarFiledShader"
     {
         //_MainTex ("Texture", 2D) = "white" {}
 
-        _Scale("Scale",Range(1.0,20.0)) = 5.0
+        _Scale("Scale XY max min",vector) = (10.0,0.5,0.0,0.0)
         _FadeVal("Fade length XY", Vector) = (1.2,0.8,0,0)
         _CFSpeed("Circle Fade Speed",Range(0.1,20.0)) = 5.0
+        _ColorSpeed("Color Shift Speed",Range(0.1,20.0)) = 5.0
         _MoveSpeed("Move Speed",Range(0.1,10.0)) = 1.0
     }
     SubShader
@@ -38,9 +39,10 @@ Shader "Unlit/StarFiledShader"
            // sampler2D _MainTex;
             //float4 _MainTex_ST;
 
-            fixed _Scale;
+            fixed2 _Scale;
             fixed2 _FadeVal;
             fixed _CFSpeed;
+            fixed _ColorSpeed;
             fixed _MoveSpeed;
 
             v2f vert (appdata v)
@@ -81,23 +83,15 @@ Shader "Unlit/StarFiledShader"
 
             fixed Line(fixed2 p , fixed2 a, fixed2 b)
             {
-                fixed m = smoothstep(0.03,0.01, DistLine(p, a, b));
-                m *= smoothstep(_FadeVal.x,_FadeVal.y,length(a-b));
+                fixed m = smoothstep(0.03,0.01, DistLine(p, a, b)); // line width
+                fixed d2 = length(a-b);
+                m *= smoothstep(_FadeVal.x,_FadeVal.y,d2) + smoothstep(0.05,0.03,d2-0.75); // fade in out according to lenght
                 return m;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed Layer(fixed2 uv)
             {
-                // sample the texture
-                //fixed4 col = tex2D(_MainTex, i.uv);
-
-                fixed2 uv = (i.uv - 0.5);
-                fixed3 col = fixed3(0.0,0.0,0.0);
-
-                //fixed d = DistLine(uv,fixed2(0.0,0.0), fixed2(1.0,1.0));//distance
-                fixed m = 0;
-
-                uv *= _Scale;
+                fixed m = 0.0;
 
                 fixed2 gv = frac(uv) - 0.5; // grid UV
                 fixed2 id = floor(uv);
@@ -118,10 +112,10 @@ Shader "Unlit/StarFiledShader"
                 {
                     m += Line(gv, p[4], p[iter]);
 
-                    fixed2 j = (p[iter]- gv) * 20.0;
+                    fixed2 j = (p[iter]- gv) * 15.0;
                     fixed sparkle = 1.0 / dot(j,j); // dot samething like square
 
-                    m += sparkle * (sin(time + p[iter].x*10)*0.5 + 0.5);
+                    m += sparkle * (sin(time + frac(p[iter].x)*10)*0.5 + 0.5);
                 }
                 // draw more 4 lines to avoid overlabing
                 m += Line(gv, p[1], p[3]); 
@@ -129,7 +123,37 @@ Shader "Unlit/StarFiledShader"
                 m += Line(gv, p[7], p[3]);
                 m += Line(gv, p[7], p[5]);
 
-                col = fixed3(m,m,m);
+                return m;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                // sample the texture
+                //fixed4 col = tex2D(_MainTex, i.uv);
+
+                fixed2 uv = (i.uv - 0.5);
+                fixed gradient = uv.y;
+                fixed3 col = fixed3(0.0,0.0,0.0);
+
+                //fixed d = DistLine(uv,fixed2(0.0,0.0), fixed2(1.0,1.0));//distance
+                fixed m = 0.0;
+                fixed t = _Time.y *0.1;
+
+                // rotaate uv
+                fixed2x2 mat= fixed2x2(cos(t), -sin(t), sin(t), cos(t));
+                uv = mul(uv,mat);
+
+                for(fixed iter = 0.0; iter < 1.0; iter+= 1.0/4.0)
+                {
+                    fixed z = frac(iter+t);
+                    fixed size = lerp(_Scale.x, _Scale.y,z);
+                    fixed fade = smoothstep(0.0,0.5,z) * smoothstep(1.0,0.75,z);
+                    m += Layer(uv*size+iter*20) * fade;
+                }
+
+                fixed3 baseColor = sin(t*_ColorSpeed*fixed3(0.345,0.456,0.657)) * 0.4 + 0.6;
+                col = baseColor * m;
+                col += gradient * baseColor;
 
                 //col.rg = gv; // to see grid debug
                 //if(gv.x > 0.48 || gv.y > 0.48) col = fixed3(1,0,0);
