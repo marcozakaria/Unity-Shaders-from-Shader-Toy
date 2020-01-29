@@ -5,7 +5,6 @@ Converted shaders from ShaderToy to Unity Shading Language
  Unity 2019.3.0f1
  
 ![PreviewPNG](Assets/Preview/Preview1.PNG)
-![PreviewGIF](Assets/Preview/gif1.gif)
 
  - Gears Shader :
  	https://www.shadertoy.com/view/MsGczV
