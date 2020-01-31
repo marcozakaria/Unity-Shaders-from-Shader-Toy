@@ -2,7 +2,7 @@
 
 Converted shaders from ShaderToy to Unity Shading Language
 
- Unity 2019.3.0f1
+ Unity 2019.3.0f6
  
 ![PreviewPNG](Assets/Preview/Preview1.PNG)
 
@@ -80,3 +80,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Drawing Circles : 
 	https://www.shadertoy.com/view/3tdSRn
+
+- Crumpled Wave :
+	https://www.shadertoy.com/view/3ttSzr
+
+- Glowing Marble Shader :
+	https://www.shadertoy.com/view/WtdXR8

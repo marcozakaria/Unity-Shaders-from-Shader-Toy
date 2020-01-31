@@ -24,10 +24,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _LerpValue: 0.55
+    - _LerpValue: 0.25
     - _Power: 0.3
     - _Radius: 0.5
-    - _Scale: 2
-    - _Speed: 1
-    - _Width: 2
+    - _Scale: 3
+    - _Speed: 1.5
+    - _Width: 1
     m_Colors: []
