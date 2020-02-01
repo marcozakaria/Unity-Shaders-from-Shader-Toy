@@ -4,7 +4,7 @@ Converted shaders from ShaderToy to Unity Shading Language
 
  Unity 2019.3.0f6
  
-![PreviewPNG](Assets/Preview/Preview1.PNG)
+![PreviewPNG](Assets/Preview/Preview1.jpg)
 
  - Gears Shader :
  	https://www.shadertoy.com/view/MsGczV
@@ -86,3 +86,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Glowing Marble Shader :
 	https://www.shadertoy.com/view/WtdXR8
+
+- Fractal Lines :
+	https://www.shadertoy.com/view/wt3SR4
