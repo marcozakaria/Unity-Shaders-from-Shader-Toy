@@ -1,5 +1,5 @@
 ﻿// from art of code
-Shader "Unlit/StarFiledShader"
+Shader "Unlit/StarFiledLines"
 {
     Properties
     {
