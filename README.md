@@ -98,3 +98,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Dizzy Plastic Hazard :
 	https://www.shadertoy.com/view/wltXWM
+
+- Colourful Thingy :
+	https://www.shadertoy.com/view/WlcSD7

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DizzyPlasticHazard
-  m_Shader: {fileID: 4800000, guid: 52c7362497dd0ba4081f7b1856d3ce81, type: 3}
+  m_Name: ColourfulThingy
+  m_Shader: {fileID: 4800000, guid: 1a49650f7a1100d41a2bcd687256cd6b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,9 +18,13 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _LinesST: 10
-    - _Scale: 15
-    - _Speed: 0.4
+    - _Speed: 5
+    - _Xmul: 10
+    - _Ymul: 0.05
     m_Colors: []
