@@ -95,3 +95,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - CodeBase Lightning :
 	https://www.shadertoy.com/view/wltSWn
+
+- Dizzy Plastic Hazard :
+	https://www.shadertoy.com/view/wltXWM
