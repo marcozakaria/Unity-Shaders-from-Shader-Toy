@@ -101,3 +101,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Colourful Thingy :
 	https://www.shadertoy.com/view/WlcSD7
+
+- Hexagonal Shader :
+	https://www.shadertoy.com/view/wtdSzX
