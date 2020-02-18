@@ -104,3 +104,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Hexagonal Shader :
 	https://www.shadertoy.com/view/wtdSzX
+
+- Snake Skin :
+	https://www.shadertoy.com/view/tt3SDf
