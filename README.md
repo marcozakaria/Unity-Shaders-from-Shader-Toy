@@ -30,40 +30,40 @@ Converted shaders from ShaderToy to Unity Shading Language
  - Colored waves :
  	https://www.shadertoy.com/view/tl33Wj
 
- -  FFT-IFS : 
+ - FFT-IFS : 
  	https://www.shadertoy.com/view/4lyXWW
 
-- Grail :
+ - Grail :
 	https://www.shadertoy.com/view/Wl3GWX
 
-- Circular Calender :
+ - Circular Calender :
 	https://www.shadertoy.com/view/3tKGRD
 
-- Accidental Fractal :
+ - Accidental Fractal :
 	https://www.shadertoy.com/view/WtVGzz
 
-- The ring color mixer :
+ - The ring color mixer :
 	https://www.shadertoy.com/view/WtG3RD
 
-- Toothpick cover :
+ - Toothpick cover :
 	https://www.shadertoy.com/view/wtKGzD
 
-- Dance floor :
+ - Dance floor :
 	https://www.shadertoy.com/view/lsBXDW
 
-- James bond rabbit hole :
+ - James bond rabbit hole :
 	https://www.shadertoy.com/view/tlG3WR
 
-- Colourful Waves :
+ - Colourful Waves :
 	https://www.shadertoy.com/view/ttVGDh
 
-- Simple Prespective Grid :
+ - Simple Prespective Grid :
 	https://www.shadertoy.com/view/wlGGRy
 
-- Phreax Electric Sheep :
+ - Phreax Electric Sheep :
 	https://www.shadertoy.com/view/wlV3zy
 
-- Magma Rocks :
+ - Magma Rocks :
 	https://www.shadertoy.com/view/4lXfR7
 
 - Circle Pattern :
@@ -107,3 +107,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Snake Skin :
 	https://www.shadertoy.com/view/tt3SDf
+
+- Basic Fractal :
+	https://www.shadertoy.com/view/tltSWs
+
+- Noise Wave :
+	https://www.shadertoy.com/view/WtyXzR
