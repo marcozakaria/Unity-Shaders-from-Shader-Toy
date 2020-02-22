@@ -23,7 +23,7 @@ Material:
     - _NoiseBlend: 0.4
     - _NoiseScale: 32
     - _NoiseSpeed: 2
-    - _TransprencyPercent: 1
+    - _TransprencyPercent: 0.005
     - _WaveLength: 10
     - _WaveSpeed: 0.5
     m_Colors: []

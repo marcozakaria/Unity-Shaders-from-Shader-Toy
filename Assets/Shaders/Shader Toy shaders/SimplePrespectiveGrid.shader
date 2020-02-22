@@ -59,7 +59,9 @@ Shader "Unlit/SimplePrespectiveGrid"
                 
                 fixed g = 1.-smoothstep(t-b,t+b,gpv.x)*smoothstep(t-b,t+b,gpv.y); //grid
                 
+                //fixed scol = (g) + sin(_Time.y)*0.5 +0.5;
                 fixed3 col = fixed3(g/d,g/d,g/d);
+                //fixed3 col2 = fixed3(scol,scol,scol);
 
                 return fixed4(col,1.);
             }

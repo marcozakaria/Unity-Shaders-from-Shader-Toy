@@ -20,5 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Scale: 6.8
-    m_Colors: []
+    - _Scale: 10
+    m_Colors:
+    - _Col1: {r: 0.12545, g: 0.1686, b: 0.2, a: 1}
+    - _Col2: {r: 0.921, g: 0.945, b: 0.96, a: 1}
