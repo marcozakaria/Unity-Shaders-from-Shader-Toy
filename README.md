@@ -113,3 +113,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Noise Wave :
 	https://www.shadertoy.com/view/WtyXzR
+
+- Quicky Thing :
+	 https://www.shadertoy.com/view/3tKXzw
+
+- Circle Stuff :
+	https://www.shadertoy.com/view/WlySzD
