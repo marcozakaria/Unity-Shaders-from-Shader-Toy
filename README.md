@@ -4,7 +4,8 @@ Converted shaders from ShaderToy to Unity Shading Language
 
  Unity 2019.3.0f6
  
-![PreviewPNG](Assets/Preview/Preview1.jpg)
+![Preview1](Assets/Preview/Capture1.JPG)
+![Preview2](Assets/Preview/Capture2.JPG)
 
  - Gears Shader :
  	https://www.shadertoy.com/view/MsGczV
@@ -119,3 +120,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Circle Stuff :
 	https://www.shadertoy.com/view/WlySzD
+	
+- FBM Animated Curves :
+	https://www.shadertoy.com/view/ttVSDR
