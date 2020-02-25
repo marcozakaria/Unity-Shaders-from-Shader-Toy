@@ -3,8 +3,9 @@ Shader "Unlit/CMUAnimatedCurves"
 {
     Properties
     {
-        _Scale("Scale",Range(1.0,8.0)) = 3.0
+        _Scale("Scale",Range(1.0,8.0)) = 4.0
         _Speed("Speed",Range(0.1,10.0)) = 0.5
+        _PixelSize("Line Pixel Size",Range(0.0001,0.2)) = 0.02
     }
     SubShader
     {
@@ -31,7 +32,7 @@ Shader "Unlit/CMUAnimatedCurves"
                 float4 vertex : SV_POSITION;
             };
 
-            fixed _Scale, _Speed;
+            fixed _Scale, _Speed, _PixelSize;
 
             v2f vert (appdata v)
             {
@@ -74,23 +75,35 @@ Shader "Unlit/CMUAnimatedCurves"
                 return fadeWave;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 WaveGroup(fixed2 uv, fixed pixelSize)
             {
-                fixed2 uv = (i.uv-0.5) * _Scale;
-                float pixelSize = ddy(uv.y);
-                
+                fixed4 color;
                 //waves design
-                float wave1 = FadeWave(uv, pixelSize);
-                float wave2 = FadeWave(uv * fixed2(1.2, 1.0) + fixed2(11.2, -0.0), pixelSize);
-                float wave3 = FadeWave(uv * fixed2(0.8, 1.0) + fixed2(32.321, 0.0), pixelSize);
-                float wave4 = FadeWave(uv * fixed2(0.6, 0.5) + fixed2(22.321, 0.0), pixelSize);
+                fixed wave1 = FadeWave(uv, pixelSize);
+                fixed wave2 = FadeWave(uv * fixed2(1.2, 1.0) + fixed2(11.2, 0.0), pixelSize);
+                fixed wave3 = FadeWave(uv * fixed2(0.8, 1.0) + fixed2(32.321, 0.0), pixelSize);
+                fixed wave4 = FadeWave(uv * fixed2(0.6, 0.5) + fixed2(22.321, 0.0), pixelSize);
+                fixed wave5 = FadeWave(uv * fixed2(0.9, 0.4) + fixed2(42.321, 0.0), pixelSize);
                 
                 //colors
-                fixed4 color = wave1 * fixed4(0.4, 0.9, 0.9, 1.0);
+                color = wave1 * fixed4(0.4, 0.9, 0.9, 1.0);
                 color += wave2 * fixed4(0.9, 0.4, 0.9, 1.0); 
                 color += wave3 * fixed4(0.9, 0.9, 0.4, 1.0);
                 color += wave4 * fixed4(0.9, 0.2, 0.6, 1.0);
-                
+                color += wave5 * fixed4(0.1, 0.2, 0.6, 1.0);
+
+                return color;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                fixed2 uv = (i.uv-0.5) * _Scale;
+                fixed pixelSize = _PixelSize;// ddy(uv.y);
+                                
+                fixed4 color = fixed4(0,0,0,0);
+                color += WaveGroup(uv , pixelSize);
+               // color += WaveGroup(uv , pixelSize );
+
                 //postprocess
                 color = pow(color, fixed4(0.7,0.7,0.7,0.7));
                 color = smoothstep(-0.3, 1.2, color);
