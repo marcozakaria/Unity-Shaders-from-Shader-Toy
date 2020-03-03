@@ -20,7 +20,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _LinesCount: 8
     - _Scale: 2
     - _Speed: 2
-    - _Transision: 0.5
+    - _Transision: 1
     m_Colors: []

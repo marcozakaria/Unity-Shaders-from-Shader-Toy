@@ -123,3 +123,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 	
 - FBM Animated Curves :
 	https://www.shadertoy.com/view/ttVSDR
+
+- FloorHexTiling :
+	https://www.shadertoy.com/view/3ttSW2
+
+- Trippy Visuals :
+	https://www.shadertoy.com/view/tlyXzw

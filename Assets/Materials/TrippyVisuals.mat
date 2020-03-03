@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: QuickyThing
-  m_Shader: {fileID: 4800000, guid: 3f8b1601c4fac1f4bb7ceaa1a91a5683, type: 3}
+  m_Name: TrippyVisuals
+  m_Shader: {fileID: 4800000, guid: ecac17114fd2f7644a53e3524311baae, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,8 +20,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _LinesCount: 6
-    - _Scale: 1
-    - _Speed: 3
-    - _Transision: 0.5
-    m_Colors: []
+    - _LineCount: 14
+    - _Scale: 8
+    - _Speed: 1
+    m_Colors:
+    - _Color: {r: 0.7, g: 1, b: 1.2, a: 1}

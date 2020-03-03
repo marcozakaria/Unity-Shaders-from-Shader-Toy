@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: QuickyThing
-  m_Shader: {fileID: 4800000, guid: 3f8b1601c4fac1f4bb7ceaa1a91a5683, type: 3}
+  m_Name: Unlit_Truchet Effect Sqaure
+  m_Shader: {fileID: 4800000, guid: 91e37a17edc776c4f89fc4f7ea659870, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,8 +20,5 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _LinesCount: 6
-    - _Scale: 1
-    - _Speed: 3
-    - _Transision: 0.5
+    - _Width: 0.1
     m_Colors: []
