@@ -129,3 +129,9 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Trippy Visuals :
 	https://www.shadertoy.com/view/tlyXzw
+
+- Rotating Circular Waves :
+	https://www.shadertoy.com/view/3lGSR3
+
+- Floating Points :
+	https://www.shadertoy.com/view/wlGSzc

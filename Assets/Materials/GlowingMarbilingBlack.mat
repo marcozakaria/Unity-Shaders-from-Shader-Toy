@@ -24,6 +24,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Scale: 2.5
+    - _Scale: 4.83
     - _Speed: 1
     m_Colors: []

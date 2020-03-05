@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FloorHexTiling
-  m_Shader: {fileID: 4800000, guid: b0a579b93c3a71e43aa713b6a9366e6f, type: 3}
+  m_Name: Unlit_HexagonalTiling
+  m_Shader: {fileID: 4800000, guid: 62b2eeca201bc404fae367cbdb4b9468, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,6 +20,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Scale: 2.5
+    - _Scale: 8
     - _Speed: 1
     m_Colors: []

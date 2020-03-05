@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FloorHexTiling
-  m_Shader: {fileID: 4800000, guid: b0a579b93c3a71e43aa713b6a9366e6f, type: 3}
+  m_Name: Unlit_RotatingWavesCircle
+  m_Shader: {fileID: 4800000, guid: dfa1128f58d0059428d88c0eccb72a5c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,6 +20,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Scale: 2.5
-    - _Speed: 1
-    m_Colors: []
+    - _DivisionValue: 1.33
+    - _IntersectionDensty: 8
+    - _LineThickness: 0.01
+    - _LineThickness2: 0.01
+    - _NumLines: 4
+    - _PowerValue: 1.82
+    - _Scale: 1.1
+    - _Speed: 1.5
+    m_Colors:
+    - _bgColor: {r: 0.5, g: 0.6, b: 0.3, a: 1}
