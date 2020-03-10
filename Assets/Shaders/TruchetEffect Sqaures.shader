@@ -48,7 +48,7 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed2 uv = (i.uv -0.5) * 10;
+                fixed2 uv = (i.uv -0.5) * 10 + _Time.y;
                 fixed4 col= fixed4(0,0,0,0);
 
                 fixed2 gv = frac(uv) -0.5;
