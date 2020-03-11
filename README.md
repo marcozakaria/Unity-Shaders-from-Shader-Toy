@@ -141,3 +141,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Spiral Colored :
 	https://www.shadertoy.com/view/3lGXDd
+
+- Sampling Artfacts :
+	https://www.shadertoy.com/view/ttVSWd 
