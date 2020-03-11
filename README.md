@@ -138,3 +138,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Quicky25 :
 	https://www.shadertoy.com/view/wlySWc
+
+- Spiral Colored :
+	https://www.shadertoy.com/view/3lGXDd
