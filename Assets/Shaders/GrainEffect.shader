@@ -7,11 +7,14 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
         LOD 100
 
         Pass
         {
+            ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -44,14 +47,14 @@
             {
                 fixed2 uv = i.uv * _Scale;
 
-                fixed3 col = fixed3(0.2,0.1,0.5); // back ground color
+                fixed3 col = fixed3(0.,0.,0.); // back ground color
                 
                 fixed dt = dot(uv, fixed2(15.9898, 78.233)); // any random numbers
                 fixed noise = frac(sin(dt) * 4378.5453 + _Time.y);
                 fixed3 grain = fixed3(noise, noise, noise) * (1.2 - col);
                 col += grain*0.15; // add grain to color
                 
-                return fixed4(col,1.0);
+                return fixed4(col,noise);
             }
             ENDCG
         }
