@@ -148,3 +148,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - SunShine :
 	https://www.shadertoy.com/view/3sXyRr
+
+- Swirly Tunnel :
+	https://www.shadertoy.com/view/WslcRr
