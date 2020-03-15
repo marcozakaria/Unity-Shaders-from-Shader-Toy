@@ -151,3 +151,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Swirly Tunnel :
 	https://www.shadertoy.com/view/WslcRr
+
+- PixelatedLines :
+	https://www.shadertoy.com/view/wlKSW3
