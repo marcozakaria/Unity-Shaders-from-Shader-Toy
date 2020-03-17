@@ -154,3 +154,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - PixelatedLines :
 	https://www.shadertoy.com/view/wlKSW3
+
+- Smokey Trails :
+	https://www.shadertoy.com/view/3lVSWt
