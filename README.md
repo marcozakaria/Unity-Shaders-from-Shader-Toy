@@ -160,3 +160,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Anime Hit Effect :
 	https://www.shadertoy.com/view/wsfcDM
+
+- Rotating cut Lines :
+	https://www.shadertoy.com/view/XsfBzj

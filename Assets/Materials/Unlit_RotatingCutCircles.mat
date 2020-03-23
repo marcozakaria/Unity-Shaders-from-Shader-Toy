@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_AnimeHitEffect
-  m_Shader: {fileID: 4800000, guid: b03a48b2ad67b8f4caf4a5437c268d86, type: 3}
+  m_Name: Unlit_RotatingCutCircles
+  m_Shader: {fileID: 4800000, guid: 469d5dd093fa31b43bdd7238ac25a8d8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,19 +18,13 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Floats:
-    - FREQ: 10
-    - LENGTH: 2
-    - RADIUS: 1.3
-    - SOFTNESS: 0.1
-    - WEIRDNESS: 0.1
-    - _Iteration: 3
-    - _Scale: 1.8
-    - _Speed: 1
+    - LOOPFREQ: 2
+    - THR: 0.5
+    - VIG: 10000
+    - _Scale: 300
+    - _Speed: 0.1
+    - ssThr: 2
     m_Colors:
-    - _Color: {r: 0.7169812, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.41037738, g: 1, b: 0.98414403, a: 1}

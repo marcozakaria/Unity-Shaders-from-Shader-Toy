@@ -4,9 +4,14 @@ Shader "Unlit/AnimeHitEffect"
     Properties
     {
         _Scale("Scale",Range(1.0,5.0)) = 2.0
-        _Speed("Speed",Range(0.1,5.0)) = 1.0
+        _Speed("Speed",Range(0.1,10.0)) = 1.0
         _Iteration("Iterations",Range(1, 5)) = 7
-        _Color("Color",Color) = (1,0,0)
+        _Color("Color",Color) = (1,0,0,1)
+        WEIRDNESS("WEIRDNESS",float) = 0.1
+        SOFTNESS("SOFTNESS",float) = 0.1
+        LENGTH("LENGTH",float) = 2.0
+        FREQ("FREQ",float) = 10.0
+        RADIUS("RADIUS",float) = 1.3
     }
     SubShader
     {
@@ -44,21 +49,13 @@ Shader "Unlit/AnimeHitEffect"
                 return o;
             }
 
-            #define ANIMATE 10.0
-            #define INV_ANIMATE_FREQ 0.05
-            #define RADIUS 1.3
-            #define FREQ 10.0
-            #define LENGTH 2.0
-            #define SOFTNESS 0.1
-            #define WEIRDNESS 0.1
+            fixed WEIRDNESS,SOFTNESS,LENGTH,FREQ,RADIUS;
 
-            #define ASPECT_AWARE
-
-            #define lofi(x,d) (floor((x)/(d))*(d))
+            //#define lofi(x,d) (floor((x)/(d))*(d))
 
             fixed _Scale, _Speed;
             int _Iteration;
-            fixed3 _Color;
+            fixed4 _Color;
 
             fixed hash(fixed2 v ) // return random number
             {
@@ -103,14 +100,14 @@ Shader "Unlit/AnimeHitEffect"
             {
                 fixed2 uv = (i.uv-0.5) *_Scale;
                 fixed2 puv = fixed2(
-                    WEIRDNESS * length( uv ) + ANIMATE * lofi( _Time.y*_Speed, INV_ANIMATE_FREQ ),
+                    WEIRDNESS * length( uv ) + _Speed *_Time.y,// lofi( _Time.y, INV_ANIMATE_FREQ ),
                     FREQ * atan2( uv.x, uv.y)
                 );
 
                 fixed value = noise(puv );
                 value = length(uv ) - RADIUS - LENGTH * (value - 0.5 );
                 value = smoothstep( -SOFTNESS, SOFTNESS, value );
-                return fixed4(_Color * value, value);
+                return fixed4(_Color.rgb * value, value*_Color.a);
             }
             ENDCG
         }
