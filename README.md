@@ -2,7 +2,7 @@
 
 Converted shaders from ShaderToy to Unity Shading Language
 
- Unity 2019.3.3f1
+ Unity 2019.3.6f1
  
 ![Preview1](Assets/Preview/Capture1.JPG)
 ![Preview2](Assets/Preview/Capture2.JPG)
@@ -157,3 +157,6 @@ Converted shaders from ShaderToy to Unity Shading Language
 
 - Smokey Trails :
 	https://www.shadertoy.com/view/3lVSWt
+
+- Anime Hit Effect :
+	https://www.shadertoy.com/view/wsfcDM
