@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_RotatingCutCircles
-  m_Shader: {fileID: 4800000, guid: 469d5dd093fa31b43bdd7238ac25a8d8, type: 3}
+  m_Name: Unlit_VoranoiGradient
+  m_Shader: {fileID: 4800000, guid: 876f53063aaa51c4f9897876c997d48c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,11 +20,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - LOOPFREQ: 2
-    - THR: 0.5
-    - VIG: 10000
-    - _Scale: 300
-    - _Speed: 0.15
-    - ssThr: 2
+    - _Scale: 20
+    - _Speed: 4.66
     m_Colors:
-    - _Color: {r: 0.41037738, g: 1, b: 0.98414403, a: 1}
+    - _ColorA: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorB: {r: 0.8732661, g: 1, b: 0, a: 1}
+    - _SpeedUV: {r: 50, g: 30, b: 0, a: 0}
