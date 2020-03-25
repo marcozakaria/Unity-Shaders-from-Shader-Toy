@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_VoranoiGradient
-  m_Shader: {fileID: 4800000, guid: 876f53063aaa51c4f9897876c997d48c, type: 3}
+  m_Name: Unlit_ColorLineWaves1
+  m_Shader: {fileID: 4800000, guid: 279fb3d93690561418cf2d54478fa2ad, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,5 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
-    m_Floats:
-    - _Scale: 10
-    - _Speed: 0.05
-    m_Colors:
-    - _ColorA: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorB: {r: 1, g: 0.7398773, b: 0, a: 1}
-    - _SpeedUV: {r: 0.2, g: 0.2, b: 0, a: 0}
+    m_Floats: []
+    m_Colors: []

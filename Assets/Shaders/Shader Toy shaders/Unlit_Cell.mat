@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_VoranoiGradient
-  m_Shader: {fileID: 4800000, guid: 876f53063aaa51c4f9897876c997d48c, type: 3}
+  m_Name: Unlit_Cell
+  m_Shader: {fileID: 4800000, guid: 80efc0d981d20b942a6f0c13607612a0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,11 +18,13 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Scale: 10
-    - _Speed: 0.05
-    m_Colors:
-    - _ColorA: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorB: {r: 1, g: 0.7398773, b: 0, a: 1}
-    - _SpeedUV: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _cellMinDist: 0.723
+    - _scale: 1
+    - _scaleCell: 20
+    m_Colors: []
