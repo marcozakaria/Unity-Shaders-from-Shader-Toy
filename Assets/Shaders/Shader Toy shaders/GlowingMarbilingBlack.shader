@@ -47,7 +47,7 @@ Shader "Unlit/GlowingMarbilingBlack"
                 fixed2 uv =  (_Scale * i.uv - _ScreenParams.xy) ;
 
                 fixed time = _Time.y * _Speed;
-                for(float i = 1.0; i < 10.0; i++)
+                for(float i = 1.0; i < 5.0; i++)
                 {
                     uv.x += 0.6 / i * cos(i * 2.5* uv.y + time);
                     uv.y += 0.6 / i * cos(i * 1.5 * uv.x + time);
