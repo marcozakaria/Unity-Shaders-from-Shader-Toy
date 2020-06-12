@@ -24,8 +24,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amount: 0.233
+    - _Amount: 0.344
     - _LineMove: 0
     m_Colors:
     - _ColorX: {r: 1, g: 0.978132, b: 0.39999998, a: 1}
-    - _ColorY: {r: 0.2, g: 0.69803923, b: 0.6875891, a: 1}
+    - _ColorY: {r: 1, g: 1, b: 1, a: 1}
