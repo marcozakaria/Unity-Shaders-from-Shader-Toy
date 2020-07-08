@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FeathersInWind
-  m_Shader: {fileID: 4800000, guid: a0c9afe991de65c469be2bb90bb185ad, type: 3}
+  m_Name: 3D_FeathersInWind_RayMarcher
+  m_Shader: {fileID: 4800000, guid: 6389813d29ed92a4193a2e1bbca7821d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,9 +24,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Scale: 1
-    - _Speed: 1
-    - _Strandcount: 40
+    - _FeatherXRange: 6
+    - _FeatherYRange: 3
+    - _MaxIter: 32
+    - _Scale: 1.5
+    - _Speed: 0.5
+    - _Strandcount: 60
     - _XCutRange: 0.9
     - _waveLength: 0.2
-    m_Colors: []
+    m_Colors:
+    - _BGColorA: {r: 0.2, g: 0.46369585, b: 0.69803923, a: 0.19607843}
+    - _BGColorB: {r: 1, g: 0.3273578, b: 0.10196078, a: 0.19607843}

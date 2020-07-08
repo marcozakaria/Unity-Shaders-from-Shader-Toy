@@ -1,17 +1,18 @@
-﻿Shader "Unlit/FeathersInWind"
+﻿Shader "Custom/FeathersInWind"
 {
     Properties
     {
         [HideInInspector]
         _MainTex ("Texture", 2D) = "white" {}
 
-        _Speed("Speed",Range(0.01,5.0)) = 0.1
+        _Speed("Speed",Range(0.01,5.0)) = 1.0
         _Scale("Scale",Range(1.0,10.0)) = 1.0
 
         [Header(Feather Properties)]
         _Strandcount("Strand count", float) = 50.0
         _waveLength("wave Length", float) = 0.2
         _XCutRange("XCutRange", float) = 0.9
+
     }
     SubShader
     {
@@ -80,16 +81,22 @@
                 return max( m * strand * shade, stem);
             }
 
+            fixed2 BendUV(fixed2 uv)    // old bending in 2d mode
+            {
+                uv -= fixed2(0, -0.45);
+                fixed d = length(uv);
+                uv = mul(uv, Rotate(sin(_Time.y * _Speed) * d));
+                uv += fixed2(0, -0.45);
+                return uv;
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed2 uv = (i.uv - 0.5) *_Scale;
 
                 fixed4 col = fixed4(0.0,0.0,0.0,1.0);
 
-                uv -= fixed2(0, -0.45);
-                fixed d = length(uv);
-                uv = mul(uv, Rotate(sin(_Time.y) * d));
-                uv += fixed2(0, -0.45);
+                uv = BendUV(uv);
 
                 col += Feather(uv);
 

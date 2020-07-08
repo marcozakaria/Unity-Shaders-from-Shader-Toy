@@ -6,8 +6,9 @@ Shader "Unlit/VoranoiGradient"
         _ColorA("Color A",Color) = (1,0,0,1)
         _ColorB("Color B",Color) = (0,1,0,1)
         _Scale("Scale",float) = 20
-        _SpeedUV("Speed UV x,y",vector) = (0.2,0.2,0,0)
-        _Speed("Speed",Range(0.1,10.0)) = 0.05
+       // _SpeedUV("Speed UV x,y",vector) = (0.2,0.2,0,0)
+        _Speed("Speed",Range(0.0,10.0)) = 1.0
+        _VoranoiSpeed("Voranoi Division", vector)= (50,30,0,0)
 
     }
     SubShader
@@ -50,7 +51,7 @@ Shader "Unlit/VoranoiGradient"
 
             fixed3 _ColorA, _ColorB;
             fixed _Speed, _Scale;
-            fixed2 _SpeedUV;
+            fixed2 _VoranoiSpeed;
 
             fixed2 ran(fixed2 _uv) 
             {
@@ -64,21 +65,22 @@ Shader "Unlit/VoranoiGradient"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed2 uv = ((i.uv - 0.5) + fixed2(_Time.y/50.,_Time.y/30.)) * _Scale;
+                fixed2 voranoi = frac(fixed2(_Time.y/_VoranoiSpeed.x, _Time.y/_VoranoiSpeed.y) * _Speed);
+                fixed2 uv = ((i.uv - 0.5) + voranoi) * _Scale;
                 
                 fixed2 gv = frac(uv)-.5;
                 fixed2 id = floor(uv);
                 
-                fixed mindist = length(gv+pt(id));
-                fixed2 vorv = (id+pt(id))/_Scale-fixed2(_Time.y/50.,_Time.y/30.);
-                for(fixed i=-1.;i<=1.;i++) 
+                fixed mindist = length(gv + pt(id));
+                fixed2 vorv = (id+pt(id))/_Scale - voranoi;
+                for(fixed i=-1.; i<=1.; i++) 
                 {
-                    for(fixed j=-1.;j<=1.;j++)
+                    for(fixed j=-1.; j<=1.; j++)
                     { 
                         fixed dist = length(gv+pt(id+fixed2(i,j))-fixed2(i,j));
                         if(dist<mindist){
                             mindist = dist;
-                            vorv = (id+pt(id+fixed2(i,j))+fixed2(i,j))/_Scale-fixed2(_Time.y/50.,_Time.y/30.);
+                            vorv = (id+pt(id+fixed2(i,j))+fixed2(i,j))/_Scale - voranoi;
                         }
                     }
                 }
