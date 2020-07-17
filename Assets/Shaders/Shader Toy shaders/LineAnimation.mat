@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_WaterMarble
-  m_Shader: {fileID: 4800000, guid: 0246c1fcc9a6e5f438bd242f90334f91, type: 3}
+  m_Name: LineAnimation
+  m_Shader: {fileID: 4800000, guid: 1b37bc860359db84cbbeb5f3654449e2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,7 +18,13 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Scale: 18
+    - _Scale: 3
+    - _Sp: 2
+    - _Speed: 4
     m_Colors: []

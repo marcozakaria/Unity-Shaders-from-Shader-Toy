@@ -3,7 +3,7 @@ Shader "Unlit/WaterMarble"
 {
     Properties
     {
-        
+        _Scale("Scale",float) = 20
     }
     SubShader
     {
@@ -37,6 +37,8 @@ Shader "Unlit/WaterMarble"
                 o.uv = v.uv;
                 return o;
             }
+
+            fixed _Scale;
 
             uint hash( uint x ) 
             {
@@ -81,8 +83,6 @@ Shader "Unlit/WaterMarble"
                 float c = random(i + float2(0.0, 1.0));
                 float d = random(i + float2(1.0, 1.0));
 
-                // Smooth Interpolation
-
                 // Cubic Hermine Curve.  Same as SmoothStep()
                 float2 u = f*f*(3.0-2.0*f);
                 // u = smoothstep(0.,1.,f);
@@ -119,17 +119,18 @@ Shader "Unlit/WaterMarble"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed2 uv = (i.uv - 0.5*_ScreenParams.xy) / _ScreenParams.y;// (fragCoord-.5*iResolution.xy)/iResolution.y;
+                fixed2 uv = (i.uv - 0.5 ) ;// (fragCoord-.5*iResolution.xy)/iResolution.y;
     
-                uv *= 15.;
+                uv *= _Scale;
                     
                 float n = noise(uv,7.);
                 uv = mul(uv, rot(n+_Time.y*.01)*n );
                 
                 fixed3 col = lerp(fixed3(0.,0.,.1),fixed3(0.,1.,1.),
-                            noise(uv+_Time.y*fixed2(0.,.6), 2.));
+                            noise(uv+_Time.y*fixed2(0.1,.6), 2.));
 
                 // Output to screen
+                //n = hash(uv);
                 return fixed4(col,1.0);
             }
             
